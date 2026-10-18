@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="MT Forcing brings stable, consistent multi-turn image editing to autoregressive diffusion. Explore real eight-turn editing sequences, the method, and experimental results.">
+  <meta property="og:title" content="MT Forcing">
+  <meta property="og:description" content="Stable and consistent multi-turn image editing with autoregressive diffusion.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/cases/snow-camp/ours-08.webp">
+  <title>MT Forcing</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/cases/snow-camp/ours-08.webp" as="image">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="links.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="MT Forcing home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22V6h16v16H5Zm6 4V12h16v14H11Z"/></svg><span>MT Forcing</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#explore">Examples</a><a href="#method">Method</a><a href="#results">Results</a></nav>
+      <div class="header-actions"><a class="button button-dark header-paper" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a><button class="menu-toggle icon-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#explore">Examples</a><a href="#method">Method</a><a href="#results">Results</a><a href="#paper">Paper &amp; resources</a></nav>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow hero-eyebrow"><span class="status-dot"></span> INTRODUCING <span class="eyebrow-separator">/</span> MULTI-TURN IMAGE EDITING</p>
+      <h1 id="hero-title" aria-label="MT Forcing"><span>MT</span><span class="title-images" aria-hidden="true"><img src="assets/cases/autumn-still-life/thumb-08.webp" alt="" width="74" height="90"><img src="assets/cases/puppy/thumb-08.webp" alt="" width="74" height="90"><img src="assets/cases/snow-camp/thumb-08.webp" alt="" width="74" height="90"></span><span>Forcing</span></h1>
+      <p class="hero-subtitle">Stable and consistent multi-turn image editing<br class="mobile-break"> with autoregressive diffusion.</p>
+      <div class="hero-resources" role="group" aria-label="Project resources"><a class="resource-link" href="#paper" data-resource="arxiv" aria-haspopup="dialog" aria-label="arXiv: coming soon"><span class="resource-icon arxiv-icon" aria-hidden="true">χ</span><span class="resource-copy"><span class="resource-name">arXiv</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#paper" data-resource="github" aria-haspopup="dialog" aria-label="GitHub: coming soon"><span class="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15A10.7 10.7 0 0 1 12 6.11c.95 0 1.9.13 2.79.38 2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.79 1.16 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg></span><span class="resource-copy"><span class="resource-name">GitHub</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#paper" data-resource="huggingface" aria-haspopup="dialog" aria-label="Hugging Face: coming soon"><span class="resource-icon" aria-hidden="true">🤗</span><span class="resource-copy"><span class="resource-name">Hugging Face</span><span class="resource-status">Coming soon</span></span></a></div>
+    </section>
+
+    <figure class="hero-showcase wide" aria-label="Eight-turn replay of the alpine camp">
+      <div class="hero-visual">
+        <img id="hero-image" src="assets/cases/snow-camp/ours-08.webp" alt="Alpine camp after eight edits, with a red tent, skis, a flag, a cabin, and golden sunlight" width="1400" height="942" fetchpriority="high">
+        <div class="hero-shade"></div>
+        <div class="hero-visual-heading"><span class="small-caps">ONE IMAGE. EIGHT TURNS.</span><p>One idea.<br>Built one edit at a time.</p></div>
+        <span class="hero-model-label">MT Forcing <span aria-hidden="true">↗</span></span>
+        <div class="hero-caption"><span class="round-tag" id="hero-round">TURN 08 / 08</span><p id="hero-prompt">Add a wooden cabin above the valley.</p></div>
+        <button id="hero-play" class="hero-play" aria-label="Replay all eight edits"><span class="play-symbol" aria-hidden="true">▶</span><span id="hero-play-text">Replay the edits</span></button>
+      </div>
+      <div class="hero-timeline" role="group" aria-label="Choose an alpine camp editing turn"></div>
+      <figcaption class="figure-caption"><span>Follow one scene from the original image through eight edits.</span><span>Actual model outputs · Select a turn to explore</span></figcaption>
+    </figure>
+
+    <section id="overview" class="intro prose section-anchor">
+      <div class="article-meta"><span>MT Forcing <span class="muted">/ Research overview</span></span><button id="share-button" class="text-button" aria-label="Copy a link to this page">Share <span aria-hidden="true">↗</span></button></div>
+      <h2>A good edit remembers<br>what came before.</h2>
+      <p>Creating an image rarely ends with a single edit. We add ideas, refine details, and expect the subject, composition, and changes we already like to stay intact.</p>
+      <p>As a model repeatedly edits its own outputs, small errors can accumulate: textures degrade and content drifts. <strong>MT Forcing</strong> trains the model on its own multi-turn rollouts, with guidance from a single-turn teacher and real editing trajectories, to improve visual quality and consistency across successive edits.</p>
+      <div class="intro-note"><span class="mini-mark" aria-hidden="true">↳</span><p>A training framework that carries single-turn editing quality into multi-turn creation.</p></div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="article-toc" aria-label="On this page"><span class="toc-title">IN THIS STORY</span><a href="#explore" class="is-active">Explore every turn</a><a href="#method">Inside MT Forcing</a><a href="#results">Measuring stability</a><a href="#paper">Read the research</a><div class="toc-foot">MT FORCING<br>RESEARCH, 2026</div></aside>
+      <div class="article-content">
+        <section id="explore" class="content-section section-anchor">
+          <div class="section-heading"><span class="section-number">01 / EXPLORATION</span><h2>Ideas evolve.<br>The details stay.</h2><p>Add an object. Change the light. Build on the edits that came before. Choose a scene and drag the divider to compare the base model with MT Forcing across successive turns.</p></div>
+          <div id="case-tabs" class="pill-tabs" role="tablist" aria-label="Choose an editing example"></div>
+          <div id="case-panel" role="tabpanel" aria-label="Editing example comparison">
+            <div class="compare-toolbar"><span id="case-description">Preserving the subject and textures across edits</span><button id="compare-source" class="toggle-button" aria-pressed="false">Compare with original <span aria-hidden="true">↔</span></button></div>
+            <div class="comparison" id="comparison" style="--split:50%">
+              <img id="compare-ours" src="assets/cases/puppy/ours-08.webp" alt="MT Forcing result at turn eight" width="1400" height="942" loading="lazy">
+              <div class="comparison-before"><img id="compare-base" src="assets/cases/puppy/base-08.webp" alt="SenseNova-U1.5 result at turn eight" width="1400" height="942" loading="lazy"></div>
+              <span id="compare-label-left" class="compare-label compare-label-left">SenseNova-U1.5</span><span class="compare-label compare-label-right">+ MT Forcing</span>
+              <div class="comparison-divider" aria-hidden="true"><span>‹<i></i>›</span></div>
+              <input id="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the two images" aria-valuetext="Left image 50%, right image 50%">
+            </div>
+            <div class="edit-instruction"><span class="round-tag dark-tag" id="gallery-round">TURN 08</span><p id="gallery-prompt">Add two small warm-white lights on the blanket behind the head.</p><button class="icon-button" id="open-fullscreen" aria-label="Enlarge the current editing result">⤢</button></div>
+            <div class="turn-selector" id="turn-selector" role="group" aria-label="Choose a turn to compare"></div>
+            <div class="comparison-help"><span>← Drag the divider to compare →</span><span>Pre-generated experimental outputs</span></div>
+            <details class="provenance"><summary>Scene details and complete instructions</summary><div id="case-provenance"></div></details>
+          </div>
+        </section>
+
+        <section id="method" class="content-section section-anchor">
+          <div class="section-heading"><span class="section-number">02 / THE APPROACH</span><h2>Single-turn clarity.<br>Multi-turn consistency.</h2><p>MT Forcing addresses two challenges: maintaining visual quality while editing self-generated histories, and preserving content relationships across turns.</p></div>
+          <div class="method-tabs" role="tablist" aria-label="Method components"><button class="method-tab is-active" id="method-tab-dmd" role="tab" aria-selected="true" aria-controls="method-panel" data-method="dmd"><span>01</span> Single-Turn DMD</button><button class="method-tab" id="method-tab-tf" role="tab" aria-selected="false" aria-controls="method-panel" data-method="tf" tabindex="-1"><span>02</span> Teacher-Forcing Guidance</button></div>
+          <div id="method-panel" class="method-panel" role="tabpanel" aria-labelledby="method-tab-dmd" data-mode="dmd">
+            <div class="method-copy"><span id="method-kicker" class="small-caps">LEARNING ON SELF-ROLLOUTS</span><h3 id="method-title">A single-turn teacher.<br>Guidance at every turn.</h3><p id="method-text">The student edits its own generated history, one turn at a time. The teacher starts from the original image and applies the accumulated instructions in a single pass, providing distribution-level guidance without carrying errors across turns.</p><span class="method-focus" id="method-focus">Goal: more stable visual quality</span></div>
+            <div class="method-diagram" aria-label="Training diagram showing a single-turn teacher and a multi-turn student">
+              <div class="teacher-branch"><div class="diagram-source"><img src="assets/cases/snow-camp/thumb-source.webp" alt="Original alpine image" width="100" height="68" loading="lazy"><span>Original image x₀</span></div><span class="diagram-plus">+</span><div class="prompt-stack">Instructions so far<span>u₁ + u₂ + … + uₜ</span></div><span class="diagram-arrow">→</span><div class="teacher-node">Single-turn teacher<span>Frozen teacher</span></div></div>
+              <div class="distill-connector"><span>↓</span><span>Distribution matching · DMD</span></div>
+              <div class="student-branch"><span class="branch-label">Student self-rollout</span><div class="rollout"><div class="rollout-node"><img src="assets/cases/snow-camp/thumb-01.webp" alt="Student output at the first turn" width="100" height="68" loading="lazy"><span>x̂₁</span></div><span class="diagram-arrow">→</span><div class="rollout-node"><img src="assets/cases/snow-camp/thumb-04.webp" alt="Student output at an intermediate turn" width="100" height="68" loading="lazy"><span>…</span></div><span class="diagram-arrow">→</span><div class="rollout-node current"><img src="assets/cases/snow-camp/thumb-08.webp" alt="Student output at the current turn" width="100" height="68" loading="lazy"><span>x̂ₜ</span></div></div></div>
+              <div class="tf-branch"><span class="tf-icon">↗</span><div>Real multi-turn trajectories<span>Warmup + Regularization</span></div><span class="tf-supervision">Supervision</span></div>
+              <span class="diagram-footnote">Training schematic · Illustrative images</span>
+            </div>
+          </div>
+          <p class="method-bottom">Single-Turn DMD stabilizes visual quality. Teacher-Forcing Guidance supports consistency across turns. Both training signals guide the same student model.</p>
+        </section>
+
+        <section id="results" class="content-section section-anchor">
+          <div class="section-heading"><span class="section-number">03 / THE EVIDENCE</span><h2>Look beyond turn one.<br>All the way to turn eight.</h2><p>Across 100 eight-turn sessions in MTEdit-Bench, MT Forcing improves sustained editing performance. The figures below show eight-turn averages for SenseNova-U1.5; explore the charts for per-turn results.</p></div>
+          <div class="stats-grid"><div class="stat"><span class="stat-value">9.66<span>/ 10</span></span><span class="stat-label">Instruction following · IF ↑</span><span class="stat-baseline">Base model 8.47</span></div><div class="stat"><span class="stat-value">8.40<span>/ 10</span></span><span class="stat-label">Content consistency · CC ↑</span><span class="stat-baseline">Base model 7.09</span></div><div class="stat"><span class="stat-value">4.30<span>/ 5</span></span><span class="stat-label">Drift resistance · DRS ↑</span><span class="stat-baseline">Base model 3.83</span></div><div class="stat"><span class="stat-value">0.74<span>px</span></span><span class="stat-label">Matched-point displacement ↓</span><span class="stat-baseline">Base model 6.34 px</span></div></div>
+          <div class="chart-card">
+            <div class="chart-controls"><div class="chart-title"><h3 id="chart-heading">Content consistency</h3><p id="chart-subtitle">CC · Higher is better</p></div><label class="model-select-label"><span class="sr-only">Choose a base model</span><select id="model-select"><option value="u15">SenseNova-U1.5</option><option value="u1">SenseNova-U1</option></select></label></div>
+            <div class="chart-tabs" role="tablist" aria-label="Choose an evaluation metric"><button role="tab" aria-selected="true" id="metric-CC" aria-controls="chart-panel" data-metric="CC" class="is-active">Content consistency</button><button role="tab" aria-selected="false" id="metric-IF" aria-controls="chart-panel" data-metric="IF" tabindex="-1">Instruction following</button><button role="tab" aria-selected="false" id="metric-DRS" aria-controls="chart-panel" data-metric="DRS" tabindex="-1">Drift resistance</button><button role="tab" aria-selected="false" id="metric-Pixel" aria-controls="chart-panel" data-metric="Pixel" tabindex="-1">Pixel displacement</button></div>
+            <div id="chart-panel" role="tabpanel" aria-labelledby="metric-CC">
+            <div class="chart-legend"><span><i class="legend-ours"></i>+ MT Forcing</span><span><i class="legend-base"></i><span id="chart-base-label">SenseNova-U1.5</span></span><span class="chart-unit" id="chart-unit">Score / 10</span></div>
+            <div id="results-chart" class="results-chart"></div>
+            <div class="chart-insight" id="chart-insight" aria-live="polite"><strong>Turn 8: 7.68 vs. 3.22</strong><span>4.46 points above the base model</span></div>
+            <details class="data-details"><summary>View the full data table</summary><div class="table-scroll"><table id="results-table"><caption>Per-turn results for the selected metric</caption></table></div></details>
+            </div>
+          </div>
+          <p class="result-note">Evaluation: eight-turn means weight all turns equally. IF and CC follow the benchmark’s failure-triggered scoring rule: turns after a failure receive zero. Pixel measures mean displacement between matched points; lower values indicate better spatial alignment. Interpret each metric separately.</p>
+          <details class="evaluation-details"><summary>Evaluation settings and scope <span aria-hidden="true">+</span></summary><div><p>The evaluation covers 100 sessions with eight turns each. IF and CC are scored out of 10; DRS is scored out of 5. We compare SenseNova-U1 and SenseNova-U1.5 with their respective MT Forcing variants.</p><p>The qualitative examples above use selected checkpoints. See the scene details for sampling steps, CFG, and prompt expansion settings. These examples are recorded separately from the aggregate evaluation and do not establish runtime performance. Aggregate scores do not imply identical results for every input.</p><p>Source: the step-wise sub-bench results table in the current research manuscript. See the paper for the training procedure, ablations, and full discussion.</p><a class="text-link" href="assets/benchmark.csv" download>Download per-turn results as CSV <span aria-hidden="true">↓</span></a></div></details>
+        </section>
+
+        <section id="paper" class="content-section paper-section section-anchor">
+          <span class="section-number">04 / GO DEEPER</span>
+          <h2>Teach models to create,<br>one turn after another.</h2>
+          <p class="paper-intro">Explore the editing results, training objectives,<br class="desktop-break">and experiments behind MT Forcing.</p>
+          <div class="paper-card"><div class="paper-cover" aria-hidden="true"><span>RESEARCH PAPER</span><div class="paper-cover-title">MT<br>Forcing<span>↗</span></div><div class="paper-cover-lines"></div><small>Stable & Consistent<br>Multi-Turn Image Editing</small></div><div class="paper-info"><span class="small-caps">RESEARCH MANUSCRIPT · 2026</span><h3>MT Forcing: Towards Stable and Consistent Multi-Turn Image Editing with Autoregressive Diffusion</h3><div class="paper-actions"><a class="button button-dark" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><button class="button button-light" id="cite-button">Cite this work <span aria-hidden="true">{ }</span></button></div><p class="release-note">PDF · 14 pages · Approx. 56 MB<br>Code and model release links will be added when confirmed.</p></div></div>
+          <div class="authors"><h3>Research team</h3><p><a href="https://github.com/houyuanchen111" target="_blank" rel="noopener">Houyuan Chen<sup>1,2,*</sup></a><span>Fanzhou Wang<sup>1,*</sup></span><a href="https://x-niper.github.io/" target="_blank" rel="noopener">Xiangyu Fan<sup>1,†</sup></a><span>Zesong Qiu<sup>1</sup></span><span>Yukun Wei<sup>1</sup></span><span>Songlin Yang<sup>2</sup></span><span>Zhitao Yang<sup>1</sup></span><span>Lvmin Zhang<sup>3</sup></span><span>Pei Yang<sup>1,2</sup></span><span>Hao Zhao<sup>4,‡</sup></span><span>Lei Yang<sup>1,‡</sup></span><span>Anyi Rao<sup>2,‡</sup></span></p><div class="affiliations"><span><sup>1</sup> SenseTime Research</span><span><sup>2</sup> HKUST MMLab</span><span><sup>3</sup> Stanford University</span><span><sup>4</sup> AIR, Tsinghua University</span></div><div class="author-notes">* Equal contribution &nbsp; † Project lead &nbsp; ‡ Corresponding authors</div></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer wide"><div class="footer-top"><a class="brand" href="#">MT Forcing <span aria-hidden="true">↗</span></a><span>Every turn builds on the last.</span></div><div class="footer-bottom"><span>MT Forcing · Research project · 2026</span><a href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper</a><a href="assets/benchmark.csv" download>Evaluation data</a><a href="#main">Back to top ↑</a></div></footer>
+
+  <dialog id="resource-dialog" class="resource-dialog" aria-labelledby="resource-title" aria-describedby="resource-description"><button class="dialog-close icon-button" aria-label="Close release information">×</button><span class="small-caps">PROJECT RESOURCES</span><h2 id="resource-title">Coming soon</h2><p id="resource-description">The official project links will be added here when available.</p><a class="button button-dark" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Read the manuscript <span aria-hidden="true">↗</span></a></dialog>
+  <dialog id="image-dialog" class="image-dialog" aria-label="Enlarged editing result"><button class="dialog-close icon-button" aria-label="Close enlarged image">×</button><img id="lightbox-image" src="assets/cases/puppy/ours-08.webp" alt="Enlarged MT Forcing editing result"><p id="lightbox-caption"></p></dialog>
+  <dialog id="citation-dialog" class="citation-dialog" aria-labelledby="citation-title"><button class="dialog-close icon-button" aria-label="Close citation dialog">×</button><span class="small-caps">CITE THIS WORK</span><h2 id="citation-title">Cite MT Forcing</h2><pre id="citation-code"></pre><div class="citation-actions"><button class="button button-dark" id="copy-citation">Copy BibTeX</button><a href="assets/citation.bib" class="text-link" download>Download .bib ↓</a></div><p class="dialog-status" role="status" aria-live="polite"></p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript-note">Enable JavaScript for turn-by-turn replay and interactive comparisons. The paper, evaluation data, and page text remain available without it.</p></noscript>
+</body>
+</html>

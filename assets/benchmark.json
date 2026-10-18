@@ -1,0 +1,187 @@
+{
+  "source": "SenseTime-Research-Paper-MTForcing/table/mtedit_step_wise_pixel.tex (Table 1, displayed two-decimal values)",
+  "notes": [
+    "MTEdit-Bench step-wise sub-benchmark: 100 sessions, eight editing turns per session. Array positions correspond to Turns 1–8.",
+    "IF and CC are failure-aware benchmark scores (0–10); DRS ranges from 0–5. Higher is better for IF, CC and DRS.",
+    "Pixel is mean matched-point displacement in pixels; lower indicates better geometric alignment and should be interpreted alongside IF, CC and DRS.",
+    "Values reproduce the manuscript display precision. Means computed from these rounded values may differ slightly from means reported from higher-precision aggregates."
+  ],
+  "models": [
+    {
+      "id": "sensenova-u1",
+      "name": "SenseNova-U1",
+      "base": {
+        "IF": [
+          9.29,
+          8.95,
+          8.53,
+          7.37,
+          6.21,
+          4.5,
+          2.96,
+          1.67
+        ],
+        "CC": [
+          9.06,
+          8.51,
+          7.61,
+          5.95,
+          4.41,
+          3.06,
+          1.96,
+          1.12
+        ],
+        "DRS": [
+          4.07,
+          4.14,
+          4.12,
+          3.9,
+          3.55,
+          3.14,
+          2.84,
+          2.58
+        ],
+        "Pixel": [
+          6.63,
+          13.19,
+          12.28,
+          3.37,
+          11.06,
+          2.42,
+          0.72,
+          1.17
+        ]
+      },
+      "ours": {
+        "IF": [
+          9.71,
+          9.78,
+          9.65,
+          9.56,
+          9.54,
+          9.55,
+          9.16,
+          9.12
+        ],
+        "CC": [
+          8.85,
+          8.55,
+          8.57,
+          8.47,
+          8.19,
+          8.14,
+          7.95,
+          7.94
+        ],
+        "DRS": [
+          4.25,
+          4.23,
+          4.23,
+          4.25,
+          4.23,
+          4.2,
+          4.21,
+          4.22
+        ],
+        "Pixel": [
+          1.23,
+          0.39,
+          0.38,
+          0.35,
+          0.32,
+          0.34,
+          0.35,
+          0.37
+        ]
+      }
+    },
+    {
+      "id": "sensenova-u15",
+      "name": "SenseNova-U1.5",
+      "base": {
+        "IF": [
+          9.9,
+          9.85,
+          9.76,
+          9.46,
+          8.93,
+          8.72,
+          6.64,
+          4.52
+        ],
+        "CC": [
+          9.49,
+          9.16,
+          8.76,
+          8.04,
+          7.09,
+          6.18,
+          4.75,
+          3.22
+        ],
+        "DRS": [
+          4.09,
+          4.14,
+          4.16,
+          4.09,
+          3.99,
+          3.72,
+          3.4,
+          3.03
+        ],
+        "Pixel": [
+          4.74,
+          3.1,
+          3.86,
+          7.3,
+          8.58,
+          9.44,
+          6.84,
+          6.89
+        ]
+      },
+      "ours": {
+        "IF": [
+          9.74,
+          9.81,
+          9.77,
+          9.81,
+          9.85,
+          9.66,
+          9.49,
+          9.17
+        ],
+        "CC": [
+          8.82,
+          8.71,
+          8.64,
+          8.49,
+          8.36,
+          8.32,
+          8.19,
+          7.68
+        ],
+        "DRS": [
+          4.2,
+          4.25,
+          4.29,
+          4.32,
+          4.33,
+          4.35,
+          4.34,
+          4.35
+        ],
+        "Pixel": [
+          1.07,
+          0.54,
+          0.79,
+          0.72,
+          0.62,
+          0.69,
+          0.76,
+          0.71
+        ]
+      }
+    }
+  ]
+}
