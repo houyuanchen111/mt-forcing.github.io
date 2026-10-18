@@ -80,69 +80,19 @@
   updateScroll();
   $('#share-button').addEventListener('click', () => copy(location.href.split('#')[0], 'Page link copied'));
 
-  // Hero: exact source + eight real model outputs; playback is user initiated.
-  const snow = data.cases.find(item => item.slug === 'snow-camp');
-  let heroRound = 8;
-  let heroTimer = null;
-  let heroPlaying = false;
-  let heroRevision = 0;
-  let playbackGeneration = 0;
-  $('.hero-timeline').innerHTML = Array.from({length:9}, (_, index) => `<button data-round="${index}" aria-label="${index ? `View mountain edit ${index}` : 'View the original mountain image'}" aria-pressed="${index === 8}">${index ? pad(index) : 'Input'}</button>`).join('');
+  // Hero: native video controls; playback is user initiated.
+  const heroVideo = $('#hero-video');
   function stopHero() {
-    playbackGeneration++;
-    clearTimeout(heroTimer);
-    heroTimer = null;
-    heroPlaying = false;
-    $('#hero-play').setAttribute('aria-label', 'Replay all eight edits');
-    $('#hero-play .play-symbol').textContent = '▶';
-    $('#hero-play-text').textContent = 'Replay edits';
+    heroVideo.pause();
   }
-  async function setHeroRound(round) {
-    const revision = ++heroRevision;
-    heroRound = round;
-    const url = round ? snow.turns[round - 1].ours : snow.source;
-    const nextImage = new Image();
-    nextImage.src = url;
-    try { await nextImage.decode(); } catch { /* The img element retains a usable loading fallback. */ }
-    if (revision !== heroRevision) return;
-    $('#hero-image').src = url;
-    $('#hero-image').alt = round ? `Mountain camp, MT Forcing turn ${round}: ${snow.turns[round - 1].summary_en}` : 'The original, unedited mountain image';
-    $('#hero-round').textContent = round ? `TURN ${pad(round)} / 08` : 'THE ORIGINAL';
-    $('#hero-prompt').textContent = round ? snow.turns[round - 1].summary_en : 'A mountain landscape, ready for your first idea.';
-    $$('.hero-timeline button').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.round) === round)));
-    if (round < 8) preload(snow.turns[round].ours);
-  }
-  async function heroTick(generation) {
-    if (!heroPlaying || generation !== playbackGeneration) return;
-    if (heroRound >= 8) { stopHero(); return; }
-    await setHeroRound(heroRound + 1);
-    if (heroPlaying && generation === playbackGeneration) heroTimer = setTimeout(() => heroTick(generation), 2300);
-  }
-  $('.hero-timeline').addEventListener('click', event => {
-    const button = event.target.closest('button');
-    if (!button) return;
-    stopHero();
-    setHeroRound(Number(button.dataset.round));
-  });
-  $('#hero-play').addEventListener('click', async () => {
-    if (heroPlaying) { stopHero(); return; }
-    const generation = ++playbackGeneration;
-    heroPlaying = true;
-    $('#hero-play').setAttribute('aria-label', 'Pause edit replay');
-    $('#hero-play .play-symbol').textContent = 'Ⅱ';
-    $('#hero-play-text').textContent = 'Pause replay';
-    if (heroRound === 8) await setHeroRound(0);
-    if (heroPlaying && generation === playbackGeneration) heroTimer = setTimeout(() => heroTick(generation), 1800);
-  });
   document.addEventListener('visibilitychange', () => { if (document.hidden) stopHero(); });
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stopHero(); }, {threshold:.05}).observe($('.hero-showcase'));
+    new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stopHero(); }, {threshold:.05}).observe(heroVideo);
   }
-  setHeroRound(8);
 
-  // Gallery: a shared geometry, slider, all turns, and explicit provenance.
-  const shortTitles = {'puppy':'Puppy details','snow-camp':'Mountain camp','autumn-still-life':'Autumn still life'};
-  const galleryCases = ['puppy','snow-camp','autumn-still-life'].map(slug => data.cases.find(item => item.slug === slug));
+  // Gallery: a shared geometry, slider, and all editing turns.
+  const shortTitles = {'puppy':'Puppy details','forest-portrait':'Forest portrait','beach-wedding':'Beach wedding'};
+  const galleryCases = ['beach-wedding','forest-portrait','puppy'].map(slug => data.cases.find(item => item.slug === slug));
   let selectedCase = galleryCases[0];
   let selectedTurn = 8;
   let compareSource = false;
@@ -150,15 +100,6 @@
   $('#case-tabs').innerHTML = galleryCases.map((item, index) => `<button id="case-tab-${item.slug}" role="tab" aria-selected="${index === 0}" aria-controls="case-panel" tabindex="${index === 0 ? 0 : -1}" data-slug="${item.slug}">${shortTitles[item.slug]}</button>`).join('');
   function renderThumbnails() {
     $('#turn-selector').innerHTML = selectedCase.turns.map(turn => `<button data-round="${turn.round}" aria-pressed="${turn.round === selectedTurn}" aria-label="View turn ${turn.round}: ${escape(turn.summary_en)}"><img src="${thumbnail(turn.ours)}" alt="" width="150" height="101" loading="lazy"><span>${pad(turn.round)}</span></button>`).join('');
-  }
-  function renderProvenance() {
-    const turn = selectedCase.turns[selectedTurn - 1];
-    const original = turn.prompt_original;
-    const ours = turn.prompt_inference_ours;
-    const base = turn.prompt_inference_base;
-    const samePrompt = ours === base;
-    const setting = selectedCase.models;
-    $('#case-provenance').innerHTML = `<p>Case: ${escape(selectedCase.title.en)}. These are saved model outputs, with no live generation. Short captions summarize the editing instructions.</p><p>MT Forcing: ${setting.ours.sampling.inference_steps} sampling steps, text CFG ${setting.ours.sampling.txt_cfg}; SenseNova-U1.5: ${setting.base.sampling.inference_steps} sampling steps, text CFG ${setting.base.sampling.txt_cfg}. ${samePrompt ? 'Both methods use the same full editing instructions in this case.' : 'MT Forcing uses expanded prompts (PE), while the base model uses the original instructions.'} These settings do not provide a controlled speed comparison.</p><p><strong>Turn ${selectedTurn}: ${samePrompt ? 'inference prompt (identical for both models)' : 'original instruction'}</strong></p><blockquote lang="en">${escape(original)}</blockquote>${ours !== original ? `<p><strong>MT Forcing inference prompt</strong></p><blockquote lang="en">${escape(ours)}</blockquote>` : ''}${base !== original && base !== ours ? `<p><strong>Base model inference prompt</strong></p><blockquote lang="en">${escape(base)}</blockquote>` : ''}`;
   }
   async function renderGallery() {
     const revision = ++galleryRevision;
@@ -168,7 +109,8 @@
     const candidates = [oursUrl, baseUrl].map(url => { const image = new Image(); image.src = url; return image.decode().catch(() => {}); });
     await Promise.all(candidates);
     if (revision !== galleryRevision) return;
-    $('#comparison').classList.toggle('is-portrait', selectedCase.slug === 'autumn-still-life');
+    $('#comparison').classList.toggle('is-portrait', selectedCase.slug === 'forest-portrait');
+    $('#case-panel').dataset.case = selectedCase.slug;
     $('#compare-ours').src = oursUrl;
     $('#compare-ours').alt = `${shortTitles[selectedCase.slug]}, MT Forcing turn ${selectedTurn}: ${turn.summary_en}`;
     $('#compare-base').src = baseUrl;
@@ -180,7 +122,6 @@
     $('#case-description').textContent = selectedCase.description.en;
     $('#case-panel').setAttribute('aria-labelledby', `case-tab-${selectedCase.slug}`);
     $$('#turn-selector button').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.round) === selectedTurn)));
-    renderProvenance();
     if (selectedTurn < 8) { preload(selectedCase.turns[selectedTurn].ours); preload(selectedCase.turns[selectedTurn].base); }
   }
   $('#case-tabs').addEventListener('click', event => {
@@ -236,10 +177,6 @@
     $('#lightbox-caption').textContent = `${shortTitles[selectedCase.slug]} / TURN ${pad(selectedTurn)} — ${turn.summary_en}`;
     showDialog($('#image-dialog'));
   });
-  $('#citation-code').textContent = data.citation;
-  $('#cite-button').addEventListener('click', () => showDialog($('#citation-dialog')));
-  $('#copy-citation').addEventListener('click', () => copy(data.citation, 'BibTeX citation copied'));
-
   // Two complementary training signals.
   const methodCopy = {
     dmd:{kicker:'LEARNING ON SELF-ROLLOUTS',title:'A single-turn teacher.<br>Guidance at every turn.',text:'The student edits its own generated history, one turn at a time. The teacher starts from the original image and applies the accumulated instructions in a single pass, providing distribution-level guidance without carrying errors across turns.',focus:'Goal: more stable visual quality'},

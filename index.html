@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="MT Forcing brings stable, consistent multi-turn image editing to autoregressive diffusion. Explore real eight-turn editing sequences, the method, and experimental results.">
   <meta property="og:title" content="MT Forcing">
-  <meta property="og:description" content="Stable and consistent multi-turn image editing with autoregressive diffusion.">
+  <meta property="og:description" content="Towards stable and consistent multi-turn image editing with autoregressive diffusion.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/cases/snow-camp/ours-08.webp">
+  <meta property="og:image" content="videos/kitten_15turn_poster.webp">
   <title>MT Forcing</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/cases/snow-camp/ours-08.webp" as="image">
+  <link rel="preload" href="videos/kitten_15turn_poster.webp" as="image">
   <link rel="stylesheet" href="styles.css">
   <script src="data.js" defer></script>
   <script src="app.js" defer></script>
@@ -23,31 +23,28 @@
     <div class="header-inner">
       <a class="brand" href="#" aria-label="MT Forcing home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22V6h16v16H5Zm6 4V12h16v14H11Z"/></svg><span>MT Forcing</span></a>
       <nav class="desktop-nav" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#explore">Examples</a><a href="#method">Method</a><a href="#results">Results</a></nav>
-      <div class="header-actions"><a class="button button-dark header-paper" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a><button class="menu-toggle icon-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+      <div class="header-actions"><button class="menu-toggle icon-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
     </div>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#explore">Examples</a><a href="#method">Method</a><a href="#results">Results</a><a href="#paper">Paper &amp; resources</a></nav>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#overview">Overview</a><a href="#explore">Examples</a><a href="#method">Method</a><a href="#results">Results</a><a href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper</a></nav>
     <div class="reading-progress" aria-hidden="true"></div>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <p class="eyebrow hero-eyebrow"><span class="status-dot"></span> INTRODUCING <span class="eyebrow-separator">/</span> MULTI-TURN IMAGE EDITING</p>
-      <h1 id="hero-title" aria-label="MT Forcing"><span>MT</span><span class="title-images" aria-hidden="true"><img src="assets/cases/autumn-still-life/thumb-08.webp" alt="" width="74" height="90"><img src="assets/cases/puppy/thumb-08.webp" alt="" width="74" height="90"><img src="assets/cases/snow-camp/thumb-08.webp" alt="" width="74" height="90"></span><span>Forcing</span></h1>
-      <p class="hero-subtitle">Stable and consistent multi-turn image editing<br class="mobile-break"> with autoregressive diffusion.</p>
-      <div class="hero-resources" role="group" aria-label="Project resources"><a class="resource-link" href="#paper" data-resource="arxiv" aria-haspopup="dialog" aria-label="arXiv: coming soon"><span class="resource-icon arxiv-icon" aria-hidden="true">χ</span><span class="resource-copy"><span class="resource-name">arXiv</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#paper" data-resource="github" aria-haspopup="dialog" aria-label="GitHub: coming soon"><span class="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15A10.7 10.7 0 0 1 12 6.11c.95 0 1.9.13 2.79.38 2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.79 1.16 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg></span><span class="resource-copy"><span class="resource-name">GitHub</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#paper" data-resource="huggingface" aria-haspopup="dialog" aria-label="Hugging Face: coming soon"><span class="resource-icon" aria-hidden="true">🤗</span><span class="resource-copy"><span class="resource-name">Hugging Face</span><span class="resource-status">Coming soon</span></span></a></div>
+      <h1 id="hero-title" aria-label="MT Forcing"><span>MT</span><span class="title-images" aria-hidden="true"><img src="assets/title/flowers.webp" alt="" width="300" height="400"><img src="assets/title/citrus.webp" alt="" width="300" height="400"><img src="assets/title/garden.webp" alt="" width="300" height="400"></span><span>Forcing</span></h1>
+      <p class="hero-subtitle">Towards stable and consistent multi-turn image editing<br class="mobile-break"> with autoregressive diffusion.</p>
+      <div class="authors hero-authors" aria-label="Authors and affiliations"><p><a href="https://github.com/houyuanchen111" target="_blank" rel="noopener">Houyuan Chen<sup>1,2,*</sup></a><span>Fanzhou Wang<sup>1,*</sup></span><a href="https://x-niper.github.io/" target="_blank" rel="noopener">Xiangyu Fan<sup>1,†</sup></a><span>Zesong Qiu<sup>1</sup></span><span>Yukun Wei<sup>1</sup></span><span>Songlin Yang<sup>2</sup></span><span>Zhitao Yang<sup>1</sup></span><span>Lvmin Zhang<sup>3</sup></span><span>Pei Yang<sup>1,2</sup></span><span>Hao Zhao<sup>4,‡</sup></span><span>Lei Yang<sup>1,‡</sup></span><span>Anyi Rao<sup>2,‡</sup></span></p><div class="affiliations"><span><sup>1</sup> SenseTime Research</span><span><sup>2</sup> HKUST MMLab</span><span><sup>3</sup> Stanford University</span><span><sup>4</sup> AIR, Tsinghua University</span></div><div class="author-notes">* Equal contribution &nbsp; † Project lead &nbsp; ‡ Corresponding authors</div></div>
+      <div class="hero-resources" role="group" aria-label="Project resources"><a class="resource-link" href="#resource-dialog" data-resource="arxiv" aria-haspopup="dialog" aria-label="arXiv: coming soon"><span class="resource-icon arxiv-icon" aria-hidden="true">χ</span><span class="resource-copy"><span class="resource-name">arXiv</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#resource-dialog" data-resource="github" aria-haspopup="dialog" aria-label="GitHub: coming soon"><span class="resource-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15A10.7 10.7 0 0 1 12 6.11c.95 0 1.9.13 2.79.38 2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.79 1.16 3.02 0 4.33-2.63 5.28-5.14 5.56.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg></span><span class="resource-copy"><span class="resource-name">GitHub</span><span class="resource-status">Coming soon</span></span></a><a class="resource-link" href="#resource-dialog" data-resource="huggingface" aria-haspopup="dialog" aria-label="Hugging Face: coming soon"><span class="resource-icon" aria-hidden="true">🤗</span><span class="resource-copy"><span class="resource-name">Hugging Face</span><span class="resource-status">Coming soon</span></span></a></div>
     </section>
 
-    <figure class="hero-showcase wide" aria-label="Eight-turn replay of the alpine camp">
-      <div class="hero-visual">
-        <img id="hero-image" src="assets/cases/snow-camp/ours-08.webp" alt="Alpine camp after eight edits, with a red tent, skis, a flag, a cabin, and golden sunlight" width="1400" height="942" fetchpriority="high">
-        <div class="hero-shade"></div>
-        <div class="hero-visual-heading"><span class="small-caps">ONE IMAGE. EIGHT TURNS.</span><p>One idea.<br>Built one edit at a time.</p></div>
-        <span class="hero-model-label">MT Forcing <span aria-hidden="true">↗</span></span>
-        <div class="hero-caption"><span class="round-tag" id="hero-round">TURN 08 / 08</span><p id="hero-prompt">Add a wooden cabin above the valley.</p></div>
-        <button id="hero-play" class="hero-play" aria-label="Replay all eight edits"><span class="play-symbol" aria-hidden="true">▶</span><span id="hero-play-text">Replay the edits</span></button>
+    <figure class="hero-showcase hero-video-showcase wide" aria-label="Fifteen-turn kitten editing comparison">
+      <div class="hero-video-frame">
+        <video id="hero-video" controls muted loop playsinline preload="metadata" poster="videos/kitten_15turn_poster.webp" width="1920" height="1536" aria-label="Fifteen editing turns: SenseNova-U1.5 on the left and + MT Forcing on the right">
+          <source src="videos/kitten_15turn_comparison_12s.mp4" type="video/mp4">
+          <a href="videos/kitten_15turn_comparison_12s.mp4">Watch the fifteen-turn editing comparison.</a>
+        </video>
       </div>
-      <div class="hero-timeline" role="group" aria-label="Choose an alpine camp editing turn"></div>
-      <figcaption class="figure-caption"><span>Follow one scene from the original image through eight edits.</span><span>Actual model outputs · Select a turn to explore</span></figcaption>
     </figure>
 
     <section id="overview" class="intro prose section-anchor">
@@ -59,24 +56,23 @@
     </section>
 
     <div class="article-layout">
-      <aside class="article-toc" aria-label="On this page"><span class="toc-title">IN THIS STORY</span><a href="#explore" class="is-active">Explore every turn</a><a href="#method">Inside MT Forcing</a><a href="#results">Measuring stability</a><a href="#paper">Read the research</a><div class="toc-foot">MT FORCING<br>RESEARCH, 2026</div></aside>
+      <aside class="article-toc" aria-label="On this page"><span class="toc-title">IN THIS STORY</span><a href="#explore" class="is-active">Explore every turn</a><a href="#method">Inside MT Forcing</a><a href="#results">Measuring stability</a><div class="toc-foot">MT FORCING<br>RESEARCH, 2026</div></aside>
       <div class="article-content">
         <section id="explore" class="content-section section-anchor">
           <div class="section-heading"><span class="section-number">01 / EXPLORATION</span><h2>Ideas evolve.<br>The details stay.</h2><p>Add an object. Change the light. Build on the edits that came before. Choose a scene and drag the divider to compare the base model with MT Forcing across successive turns.</p></div>
           <div id="case-tabs" class="pill-tabs" role="tablist" aria-label="Choose an editing example"></div>
-          <div id="case-panel" role="tabpanel" aria-label="Editing example comparison">
-            <div class="compare-toolbar"><span id="case-description">Preserving the subject and textures across edits</span><button id="compare-source" class="toggle-button" aria-pressed="false">Compare with original <span aria-hidden="true">↔</span></button></div>
+          <div id="case-panel" role="tabpanel" aria-label="Editing example comparison" data-case="beach-wedding">
+            <div class="compare-toolbar"><span id="case-description">Formalwear, flowers, lanterns, and sunset light across eight edits.</span><button id="compare-source" class="toggle-button" aria-pressed="false">Compare with original <span aria-hidden="true">↔</span></button></div>
             <div class="comparison" id="comparison" style="--split:50%">
-              <img id="compare-ours" src="assets/cases/puppy/ours-08.webp" alt="MT Forcing result at turn eight" width="1400" height="942" loading="lazy">
-              <div class="comparison-before"><img id="compare-base" src="assets/cases/puppy/base-08.webp" alt="SenseNova-U1.5 result at turn eight" width="1400" height="942" loading="lazy"></div>
+              <img id="compare-ours" src="assets/cases/beach-wedding/ours-08.webp" alt="Beach wedding, MT Forcing turn 8: Restore champagne-gold embroidery on the sleeves, shoulder lace, and side cutout panels" width="1400" height="942" loading="lazy">
+              <div class="comparison-before"><img id="compare-base" src="assets/cases/beach-wedding/base-08.webp" alt="Beach wedding, SenseNova-U1.5 turn 8" width="1400" height="942" loading="lazy"></div>
               <span id="compare-label-left" class="compare-label compare-label-left">SenseNova-U1.5</span><span class="compare-label compare-label-right">+ MT Forcing</span>
               <div class="comparison-divider" aria-hidden="true"><span>‹<i></i>›</span></div>
               <input id="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the two images" aria-valuetext="Left image 50%, right image 50%">
             </div>
-            <div class="edit-instruction"><span class="round-tag dark-tag" id="gallery-round">TURN 08</span><p id="gallery-prompt">Add two small warm-white lights on the blanket behind the head.</p><button class="icon-button" id="open-fullscreen" aria-label="Enlarge the current editing result">⤢</button></div>
+            <div class="edit-instruction"><span class="round-tag dark-tag" id="gallery-round">TURN 08</span><p id="gallery-prompt">Restore champagne-gold embroidery on the sleeves, shoulder lace, and side cutout panels</p><button class="icon-button" id="open-fullscreen" aria-label="Enlarge the current editing result">⤢</button></div>
             <div class="turn-selector" id="turn-selector" role="group" aria-label="Choose a turn to compare"></div>
-            <div class="comparison-help"><span>← Drag the divider to compare →</span><span>Pre-generated experimental outputs</span></div>
-            <details class="provenance"><summary>Scene details and complete instructions</summary><div id="case-provenance"></div></details>
+            <div class="comparison-help"><span>← Drag the divider to compare →</span></div>
           </div>
         </section>
 
@@ -97,7 +93,7 @@
         </section>
 
         <section id="results" class="content-section section-anchor">
-          <div class="section-heading"><span class="section-number">03 / THE EVIDENCE</span><h2>Look beyond turn one.<br>All the way to turn eight.</h2><p>Across 100 eight-turn sessions in MTEdit-Bench, MT Forcing improves sustained editing performance. The figures below show eight-turn averages for SenseNova-U1.5; explore the charts for per-turn results.</p></div>
+          <div class="section-heading"><span class="section-number">03 / THE EVIDENCE</span><h2>Look beyond turn one.</h2><p>Across 100 eight-turn sessions in MTEdit-Bench, MT Forcing improves sustained editing performance. The figures below show eight-turn averages for SenseNova-U1.5; explore the charts for per-turn results.</p></div>
           <div class="stats-grid"><div class="stat"><span class="stat-value">9.66<span>/ 10</span></span><span class="stat-label">Instruction following · IF ↑</span><span class="stat-baseline">Base model 8.47</span></div><div class="stat"><span class="stat-value">8.40<span>/ 10</span></span><span class="stat-label">Content consistency · CC ↑</span><span class="stat-baseline">Base model 7.09</span></div><div class="stat"><span class="stat-value">4.30<span>/ 5</span></span><span class="stat-label">Drift resistance · DRS ↑</span><span class="stat-baseline">Base model 3.83</span></div><div class="stat"><span class="stat-value">0.74<span>px</span></span><span class="stat-label">Matched-point displacement ↓</span><span class="stat-baseline">Base model 6.34 px</span></div></div>
           <div class="chart-card">
             <div class="chart-controls"><div class="chart-title"><h3 id="chart-heading">Content consistency</h3><p id="chart-subtitle">CC · Higher is better</p></div><label class="model-select-label"><span class="sr-only">Choose a base model</span><select id="model-select"><option value="u15">SenseNova-U1.5</option><option value="u1">SenseNova-U1</option></select></label></div>
@@ -110,26 +106,17 @@
             </div>
           </div>
           <p class="result-note">Evaluation: eight-turn means weight all turns equally. IF and CC follow the benchmark’s failure-triggered scoring rule: turns after a failure receive zero. Pixel measures mean displacement between matched points; lower values indicate better spatial alignment. Interpret each metric separately.</p>
-          <details class="evaluation-details"><summary>Evaluation settings and scope <span aria-hidden="true">+</span></summary><div><p>The evaluation covers 100 sessions with eight turns each. IF and CC are scored out of 10; DRS is scored out of 5. We compare SenseNova-U1 and SenseNova-U1.5 with their respective MT Forcing variants.</p><p>The qualitative examples above use selected checkpoints. See the scene details for sampling steps, CFG, and prompt expansion settings. These examples are recorded separately from the aggregate evaluation and do not establish runtime performance. Aggregate scores do not imply identical results for every input.</p><p>Source: the step-wise sub-bench results table in the current research manuscript. See the paper for the training procedure, ablations, and full discussion.</p><a class="text-link" href="assets/benchmark.csv" download>Download per-turn results as CSV <span aria-hidden="true">↓</span></a></div></details>
         </section>
 
-        <section id="paper" class="content-section paper-section section-anchor">
-          <span class="section-number">04 / GO DEEPER</span>
-          <h2>Teach models to create,<br>one turn after another.</h2>
-          <p class="paper-intro">Explore the editing results, training objectives,<br class="desktop-break">and experiments behind MT Forcing.</p>
-          <div class="paper-card"><div class="paper-cover" aria-hidden="true"><span>RESEARCH PAPER</span><div class="paper-cover-title">MT<br>Forcing<span>↗</span></div><div class="paper-cover-lines"></div><small>Stable & Consistent<br>Multi-Turn Image Editing</small></div><div class="paper-info"><span class="small-caps">RESEARCH MANUSCRIPT · 2026</span><h3>MT Forcing: Towards Stable and Consistent Multi-Turn Image Editing with Autoregressive Diffusion</h3><div class="paper-actions"><a class="button button-dark" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><button class="button button-light" id="cite-button">Cite this work <span aria-hidden="true">{ }</span></button></div><p class="release-note">PDF · 14 pages · Approx. 56 MB<br>Code and model release links will be added when confirmed.</p></div></div>
-          <div class="authors"><h3>Research team</h3><p><a href="https://github.com/houyuanchen111" target="_blank" rel="noopener">Houyuan Chen<sup>1,2,*</sup></a><span>Fanzhou Wang<sup>1,*</sup></span><a href="https://x-niper.github.io/" target="_blank" rel="noopener">Xiangyu Fan<sup>1,†</sup></a><span>Zesong Qiu<sup>1</sup></span><span>Yukun Wei<sup>1</sup></span><span>Songlin Yang<sup>2</sup></span><span>Zhitao Yang<sup>1</sup></span><span>Lvmin Zhang<sup>3</sup></span><span>Pei Yang<sup>1,2</sup></span><span>Hao Zhao<sup>4,‡</sup></span><span>Lei Yang<sup>1,‡</sup></span><span>Anyi Rao<sup>2,‡</sup></span></p><div class="affiliations"><span><sup>1</sup> SenseTime Research</span><span><sup>2</sup> HKUST MMLab</span><span><sup>3</sup> Stanford University</span><span><sup>4</sup> AIR, Tsinghua University</span></div><div class="author-notes">* Equal contribution &nbsp; † Project lead &nbsp; ‡ Corresponding authors</div></div>
-        </section>
       </div>
     </div>
   </main>
 
-  <footer class="site-footer wide"><div class="footer-top"><a class="brand" href="#">MT Forcing <span aria-hidden="true">↗</span></a><span>Every turn builds on the last.</span></div><div class="footer-bottom"><span>MT Forcing · Research project · 2026</span><a href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper</a><a href="assets/benchmark.csv" download>Evaluation data</a><a href="#main">Back to top ↑</a></div></footer>
+  <footer class="site-footer wide"><div class="footer-top"><a class="brand" href="#">MT Forcing <span aria-hidden="true">↗</span></a><span>Every turn builds on the last.</span></div><div class="footer-bottom"><span>MT Forcing · 2026</span><a href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Paper</a><a href="#resource-dialog" data-resource="github" aria-haspopup="dialog" aria-label="Code: coming soon">Code</a><a href="#resource-dialog" data-resource="huggingface" aria-haspopup="dialog" aria-label="Checkpoint: coming soon">Checkpoint</a><a href="#main">Back to top ↑</a></div></footer>
 
   <dialog id="resource-dialog" class="resource-dialog" aria-labelledby="resource-title" aria-describedby="resource-description"><button class="dialog-close icon-button" aria-label="Close release information">×</button><span class="small-caps">PROJECT RESOURCES</span><h2 id="resource-title">Coming soon</h2><p id="resource-description">The official project links will be added here when available.</p><a class="button button-dark" href="assets/mt-forcing-paper.pdf" target="_blank" rel="noopener">Read the manuscript <span aria-hidden="true">↗</span></a></dialog>
-  <dialog id="image-dialog" class="image-dialog" aria-label="Enlarged editing result"><button class="dialog-close icon-button" aria-label="Close enlarged image">×</button><img id="lightbox-image" src="assets/cases/puppy/ours-08.webp" alt="Enlarged MT Forcing editing result"><p id="lightbox-caption"></p></dialog>
-  <dialog id="citation-dialog" class="citation-dialog" aria-labelledby="citation-title"><button class="dialog-close icon-button" aria-label="Close citation dialog">×</button><span class="small-caps">CITE THIS WORK</span><h2 id="citation-title">Cite MT Forcing</h2><pre id="citation-code"></pre><div class="citation-actions"><button class="button button-dark" id="copy-citation">Copy BibTeX</button><a href="assets/citation.bib" class="text-link" download>Download .bib ↓</a></div><p class="dialog-status" role="status" aria-live="polite"></p></dialog>
+  <dialog id="image-dialog" class="image-dialog" aria-label="Enlarged editing result"><button class="dialog-close icon-button" aria-label="Close enlarged image">×</button><img id="lightbox-image" src="assets/cases/beach-wedding/ours-08.webp" alt="Beach wedding · MT Forcing turn 8"><p id="lightbox-caption"></p></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <noscript><p class="noscript-note">Enable JavaScript for turn-by-turn replay and interactive comparisons. The paper, evaluation data, and page text remain available without it.</p></noscript>
+  <noscript><p class="noscript-note">Enable JavaScript for interactive image comparisons and charts. The video, paper, and page text remain available without it.</p></noscript>
 </body>
 </html>

@@ -26,14 +26,14 @@ window.MT_LINKS = {
         link.rel = 'noopener noreferrer';
         link.removeAttribute('aria-haspopup');
         link.setAttribute('aria-label', `Open MT Forcing on ${resource.name} (opens in a new tab)`);
-        link.querySelector('.resource-status').textContent = 'Explore ↗';
+        const status = link.querySelector('.resource-status');
+        if (status) status.textContent = 'Explore ↗';
         return;
       } catch { /* Leave incomplete URLs in the explicit coming-soon state. */ }
     }
     link.addEventListener('click', event => {
       event.preventDefault();
-      const playback = document.querySelector('#hero-play');
-      if (playback.querySelector('.play-symbol').textContent === 'Ⅱ') playback.click();
+      document.querySelector('#hero-video')?.pause();
       document.querySelector('#resource-title').textContent = `${resource.name} · Coming soon`;
       document.querySelector('#resource-description').textContent = resource.description;
       dialog.showModal();

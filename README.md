@@ -2,7 +2,7 @@
 
 Project website for **MT Forcing: Towards Stable and Consistent Multi-Turn Image Editing with Autoregressive Diffusion**.
 
-An English, static research website with real eight-turn editing examples, interactive model comparisons, a method overview, per-turn benchmark charts, and the research manuscript.
+An English, static research website with a 15-turn comparison video, real eight-turn editing examples, interactive model comparisons, a method overview, per-turn benchmark charts, and the research manuscript.
 
 ## Preview
 
@@ -20,13 +20,13 @@ Visit <http://127.0.0.1:8765/>. No build step, package installation, or external
 | --- | --- |
 | `index.html` | Page structure and research content |
 | `styles.css` | Visual design and responsive layouts |
-| `app.js` | Editing replay, comparisons, charts, and dialogs |
+| `app.js` | Video playback behavior, comparisons, charts, and dialogs |
 | `data.js` | Case descriptions, editing instructions, benchmark data, and citation |
 | `links.js` | arXiv, GitHub, and Hugging Face destinations |
 | `assets/cases/` | Full-size WebP examples and thumbnails |
-| `assets/benchmark.json` / `.csv` | Per-turn evaluation data |
-| `assets/citation.bib` | BibTeX citation |
+| `videos/` | 12-second kitten comparison video and final-turn poster |
 | `assets/mt-forcing-paper.pdf` | Current research manuscript |
+| `.nojekyll` | Serve the static site without Jekyll processing |
 
 ## Release links
 
@@ -44,19 +44,28 @@ Configured entries automatically become external links. Empty entries retain the
 
 ## Content maintenance
 
-Keep the chart data in `data.js`, `assets/benchmark.json`, and `assets/benchmark.csv` consistent. Keep the citation in `data.js` aligned with `assets/citation.bib`. Replace the manuscript PDF when the paper is updated.
+Editing sequences, per-turn chart values, and citation metadata are embedded in `data.js`. Update that bundle when the research content changes. Replace the manuscript PDF when the paper is updated.
 
-The evaluation uses 100 eight-turn sessions. The website documents failure-triggered IF/CC scoring and the inference-setting differences in the qualitative examples. The PDF is the current research manuscript.
+The evaluation uses 100 eight-turn sessions. The website documents failure-triggered IF/CC scoring and the scope of the evaluation. The PDF is the current research manuscript.
 
-The local reference checkout (`rea`), research notes (`research/`), research-specific preparation scripts (`scripts/`), and generated ZIP archive are intentionally excluded from Git. They are not required to run the website. In the original workspace, detailed preparation and verification instructions remain in `research/local-workflow.md`.
+This directory contains only the static website and repository metadata. Raw experiment exports, preparation scripts, verification records, unused images, and ZIP archives are kept separately. They are not required to serve the website. The root-level Git allowlist prevents these local working files from being accidentally added again.
 
 ## Push to GitHub
 
-This directory is an independent Git repository on the `main` branch. After creating an empty repository on GitHub, run these commands from this directory, replacing the placeholders with your repository name:
+This directory is an independent Git repository on the `main` branch. Review and commit the current website before pushing:
+
+```sh
+git add -A
+git commit -m "Update MT Forcing project website"
+```
+
+After creating an empty repository on GitHub, run these commands from this directory, replacing the placeholders with your repository name:
 
 ```sh
 git remote add origin git@github.com:YOUR_USERNAME/YOUR_REPOSITORY.git
 git push -u origin main
 ```
+
+Use the repository root as the GitHub Pages publishing directory. All website asset URLs are relative, so the site supports both a user-site domain and a project-site subdirectory. No build command or dependency installation is required.
 
 The website can also be served by any static host using this directory as its document root.

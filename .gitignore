@@ -1,10 +1,20 @@
-# Generated website archive
-/mt-forcing-site.zip
-
-# Local reference checkout and research-only tooling
-/rea
-/research/
-/scripts/
+# Keep the repository root limited to the published website and Git metadata.
+/*
+!/.gitattributes
+!/.gitignore
+!/.nojekyll
+!/README.md
+!/LICENSE
+!/LICENSE.*
+!/CNAME
+!/.github/
+!/index.html
+!/styles.css
+!/app.js
+!/data.js
+!/links.js
+!/assets/
+!/videos/
 
 # OS, editor, and Python cache files
 .DS_Store
