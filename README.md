@@ -22,7 +22,7 @@ Visit <http://127.0.0.1:8765/>. No build step, package installation, or external
 | `styles.css` | Visual design and responsive layouts |
 | `app.js` | Video playback behavior, comparisons, charts, and dialogs |
 | `data.js` | Case descriptions, editing instructions, benchmark data, and citation |
-| `links.js` | arXiv, GitHub, and Hugging Face destinations |
+| `links.js` | arXiv release status and placeholder dialog |
 | `assets/cases/` | Full-size WebP examples and thumbnails |
 | `videos/` | 12-second kitten comparison video and final-turn poster |
 | `assets/mt-forcing-paper.pdf` | Current research manuscript |
@@ -30,17 +30,17 @@ Visit <http://127.0.0.1:8765/>. No build step, package installation, or external
 
 ## Release links
 
-The resource buttons in the hero and the footer link to the official GitHub repository and Hugging Face checkpoints. The arXiv entry still shows **Coming soon**. Configure the official HTTPS project URLs at the top of `links.js`:
+The GitHub and Hugging Face buttons in the hero and footer are direct HTTPS links in `index.html`. Update their `href` attributes there; published links do not use `data-resource` or the placeholder dialog.
+
+The arXiv entry still shows **Coming soon**. Configure its official HTTPS URL at the top of `links.js` when published:
 
 ```js
 window.MT_LINKS = {
-  arxiv: '',
-  github: 'https://github.com/houyuanchen111/MT-Forcing',
-  huggingface: 'https://huggingface.co/houyuanchen/MT-Forcing'
+  arxiv: ''
 };
 ```
 
-Configured entries automatically become external links. Empty entries retain the release-information dialog. Keep the corresponding links and status labels in `index.html` in sync so published resources also work without JavaScript.
+Configured entries automatically become external links. Empty entries retain the release-information dialog. When publishing arXiv, also update its link and status label in `index.html` and remove `data-resource`, so it works without JavaScript. Bump the `links.js` version parameter in `index.html` when changing the script to avoid stale browser caches.
 
 ## Content maintenance
 

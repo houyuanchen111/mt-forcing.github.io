@@ -1,22 +1,19 @@
-/* Add the official project URLs here when each resource is published. */
+/* Published resources are direct links in index.html. Add arXiv here when available. */
 window.MT_LINKS = {
-  arxiv: '',
-  github: 'https://github.com/houyuanchen111/MT-Forcing',
-  huggingface: 'https://huggingface.co/houyuanchen/MT-Forcing'
+  arxiv: ''
 };
 
 (() => {
   'use strict';
   const resources = {
-    arxiv: {name: 'arXiv', description: 'The arXiv preprint is not available yet. You can read the current research manuscript below.'},
-    github: {name: 'GitHub', description: 'The code repository is not public yet. The official repository link will appear here when it is available.'},
-    huggingface: {name: 'Hugging Face', description: 'The Hugging Face release is not available yet. The official project link will appear here when it is available.'}
+    arxiv: {name: 'arXiv', description: 'The arXiv preprint is not available yet. You can read the current research manuscript below.'}
   };
   const dialog = document.querySelector('#resource-dialog');
-  document.querySelectorAll('[data-resource]').forEach(link => {
+  document.querySelectorAll('[data-resource][href="#resource-dialog"]').forEach(link => {
     const key = link.dataset.resource;
     const resource = resources[key];
-    const configured = window.MT_LINKS[key].trim();
+    if (!resource) return;
+    const configured = (window.MT_LINKS[key] || '').trim();
     if (configured) {
       try {
         const url = new URL(configured);
