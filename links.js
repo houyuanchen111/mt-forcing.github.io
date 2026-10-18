@@ -1,8 +1,8 @@
 /* Add the official project URLs here when each resource is published. */
 window.MT_LINKS = {
   arxiv: '',
-  github: '',
-  huggingface: ''
+  github: 'https://github.com/houyuanchen111/MT-Forcing',
+  huggingface: 'https://huggingface.co/houyuanchen/MT-Forcing'
 };
 
 (() => {

@@ -30,17 +30,17 @@ Visit <http://127.0.0.1:8765/>. No build step, package installation, or external
 
 ## Release links
 
-The three resource buttons appear in the hero. They currently show **Coming soon**. Add the official HTTPS project URLs at the top of `links.js` when each resource is published:
+The resource buttons in the hero and the footer link to the official GitHub repository and Hugging Face checkpoints. The arXiv entry still shows **Coming soon**. Configure the official HTTPS project URLs at the top of `links.js`:
 
 ```js
 window.MT_LINKS = {
   arxiv: '',
-  github: '',
-  huggingface: ''
+  github: 'https://github.com/houyuanchen111/MT-Forcing',
+  huggingface: 'https://huggingface.co/houyuanchen/MT-Forcing'
 };
 ```
 
-Configured entries automatically become external links. Empty entries retain the release-information dialog.
+Configured entries automatically become external links. Empty entries retain the release-information dialog. Keep the corresponding links and status labels in `index.html` in sync so published resources also work without JavaScript.
 
 ## Content maintenance
 
