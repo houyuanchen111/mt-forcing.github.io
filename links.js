@@ -1,12 +1,12 @@
-/* Published resources are direct links in index.html. Add arXiv here when available. */
+/* Published resources are direct links in index.html; keep fallback URLs in sync. */
 window.MT_LINKS = {
-  arxiv: ''
+  arxiv: 'https://arxiv.org/pdf/2610.25404'
 };
 
 (() => {
   'use strict';
   const resources = {
-    arxiv: {name: 'arXiv', description: 'The arXiv preprint is not available yet. You can read the current research manuscript below.'}
+    arxiv: {name: 'arXiv', description: 'Read the MT Forcing preprint on arXiv.'}
   };
   const dialog = document.querySelector('#resource-dialog');
   document.querySelectorAll('[data-resource][href="#resource-dialog"]').forEach(link => {
